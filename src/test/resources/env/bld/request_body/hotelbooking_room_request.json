@@ -1,0 +1,23 @@
+{
+  "FullName": "Venakswara Rao",
+  "Age": 25,
+  "IdCardType": "Passport",
+  "IdCardNumber": "ACD3456AS",
+  "GuestCount": 2,
+  "RoomType": "Suite",
+  "TotalPrice": 453.34,
+  "DepositPaid": true,
+  "Cancellation": true,
+  "BookingDates": {
+    "CheckIn": "2024-12-24T23:01:56.293Z",
+    "CheckOut": "2024-12-27T23:01:56.293Z"
+  },
+  "AdditionalNeeds": {
+    "Breakfast": true,
+    "Wifi": true,
+    "CarParking": true,
+    "RoomService": true,
+    "Others": true,
+    "NewsPaper": true
+  }
+}

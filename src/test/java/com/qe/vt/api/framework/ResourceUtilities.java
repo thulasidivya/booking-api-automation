@@ -26,13 +26,11 @@ public class ResourceUtilities {
             throw new RuntimeException(e.getMessage());
         }
     }
-
     private static String inputStreamToString(InputStream inputStream) {
         try (Scanner scanner = new Scanner(inputStream).useDelimiter("\\A")) {
             return scanner.hasNext() ? scanner.next() : "";
         }
     }
-
     //path "src/test/resources/env/bld/requestSchema/post-bookingRoom.json"
     public String fileToString(String filePath) {
         String fileStr = null;

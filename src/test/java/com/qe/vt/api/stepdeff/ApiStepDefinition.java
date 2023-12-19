@@ -13,26 +13,31 @@ public class ApiStepDefinition extends ApiManager {
 
     @Given("I set the request baseuri for {string}")
     public void iSetTheRequestBaseuriFor(String apiName) {
-
         testApiName= apiName;
         String baseUri= CucumberHooks.PropUtility.getConfigPropByName(apiName+"_base_uri");
         setRequestBaseURI(baseUri);
-
     }
     @And("I set the request header and body with valid input")
     public void iSetTheRequestHeaderAndBodyWithValidInput() {
         setDefaultRequestHeaders();
         setDefaultRequestBody(testApiName);
     }
-
-
     @Then("I Verify the response status code as {int} and status text as {string}")
     public void iVerifyTheResponseStatusCodeAsAndStatusTextAs(int statusCode, String statusText) {
         assertStatusCode(statusCode);
     }
-
     @When("I call the {string} method")
     public void iCallTheMethod(String httpMethod) {
-        executeHttpMethod(httpMethod);
+                executeHttpMethod(httpMethod);
+    }
+    @And("I set the request body field {string} with the value of {}")
+    public void iSetTheRequestBodyFieldWithTheValueOf(String arg0, String arg1) {
+
+
+    }
+
+    @And("I verify the response body value of {string} should accept only alphabets and should equal to {}")
+    public void iVerifyTheResponseBodyValueOfShouldAcceptOnlyAlphabetsAndShouldEqualTo(String arg0, String arg1) {
+
     }
 }

@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
                 "html:target/cucumber-reports/cucumber.html",
                 "json:target/cucumber-reports/cucumber.json"
         },
-        //tags =   "@HotelBookingApplicationAPI",
+        tags =   "@HotelBookingApplicationAPI",
         monochrome = true
 )
 public class ApiRunnerMain {

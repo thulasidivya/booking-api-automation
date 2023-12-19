@@ -32,7 +32,7 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>
-                        <include>**/*WebRunnerMain.java</include>
+                        <include>**/*ApiRunnerMain.java</include>
                         <!--<include>${testsuitnamefromci}</include> -->
                     </includes>
                     <!--<suiteXmlFiles> <suiteXmlFile>testng.xml</suiteXmlFile> </suiteXmlFiles> -->

@@ -1,7 +1,6 @@
 package com.qe.vt.api.utilities;
 
 import com.qe.vt.api.constants.Config;
-import org.apache.logging.log4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -62,11 +61,11 @@ public class PropertyManager {
         public String getTestDataPropByName(String propName){ return testDataProp.getProperty(propName);
     }
 
-    public static void main(String[] args) {
+  /*  public static void main(String[] args) {
         PropertyManager
         PropUtility = PropertyManager.getInstance();
         Logger logger = null;
         logger.atDebug().log("Property intput....."+PropUtility.getTestDataPropByName("login.user.name"));
 
-    }
+    }*/
 }

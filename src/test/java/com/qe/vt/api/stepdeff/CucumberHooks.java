@@ -2,7 +2,7 @@ package com.qe.vt.api.stepdeff;
 
 import com.qe.vt.api.constants.Config;
 import com.qe.vt.api.framework.ApiCommonVariables;
-import com.qe.vt.api.framework.ApiManager;
+import com.qe.vt.api.framework.RestApiManager;
 import com.qe.vt.api.utilities.PropertyManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -41,7 +41,7 @@ public class CucumberHooks {
     @After
     public void teardown(Scenario scenario) {
         logger.atDebug().log("After scenario is failed...." +scenario.isFailed());
-        scenario.attach(ApiManager.resp.asByteArray(), "text/plain","API Request & Response");
+        scenario.attach(RestApiManager.resp.asByteArray(), "text/plain","API Request & Response");
         scenario.attach(ApiCommonVariables.curlLogs.toString(), "text/plain","API CURL Logs");
         ApiCommonVariables.curlLogs = new ArrayList<>();
         RestAssured.reset();

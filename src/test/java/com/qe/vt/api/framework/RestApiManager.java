@@ -1,5 +1,6 @@
 package com.qe.vt.api.framework;
 
+import api.ValidatorOperation;
 import com.github.dzieciou.testing.curl.CurlHandler;
 import com.github.dzieciou.testing.curl.CurlRestAssuredConfigFactory;
 import com.github.dzieciou.testing.curl.Options;
@@ -16,10 +17,24 @@ import java.util.*;
 
 import static org.hamcrest.Matchers.*;
 
-public class ApiManager<ValidatorOperation> extends ApiCommonVariables {
-    private static final Logger logger = LogManager.getLogger(ApiManager.class);
+public class RestApiManager extends ApiCommonVariables {
+   private static final Logger logger = LogManager.getLogger(RestApiManager.class);
     public RequestSpecification reqSpec;
     public static Response resp;
+
+   /* public static void main(String[] args) {
+        RestApiManager restApiBase = new RestApiManager();
+
+        restApiBase.setRequestBaseURI("http://localhost:9080/hotel-service/v1/hotel/booking-room");
+        restApiBase.setDefaultRequestHeaders();
+        restApiBase.setDefaultRequestBody("post-bookingRoom");
+        //restApiBase.updateRequestBodyFieldsValue("AdditionalNeeds.Breakfast", "true");
+        //restApiBase.removeRequestBodyField("AdditionalNeeds.Breakfast");
+
+        restApiBase.executeHttpMethod("POST");
+
+        logger.atDebug().log("FINAL RESPONSE:: "+resp.getBody().print());
+    }*/
 
     public void setRequestBaseURI(String baseURI) {
         logger.atDebug().log("setting request base URI: " + baseURI);
@@ -79,7 +94,6 @@ public class ApiManager<ValidatorOperation> extends ApiCommonVariables {
                 resp = reqSpec.config(config).log().all().when().get().then().log().all().extract().response();
                 break;
             case "POST":
-                logger.atDebug().log("45678.......");
                 resp = reqSpec.config(config).log().all().when().post().then().log().all().extract().response();
                 break;
             case "PUT":
@@ -107,6 +121,7 @@ public class ApiManager<ValidatorOperation> extends ApiCommonVariables {
     }
 
     public void assertIt(String key, Object val, ValidatorOperation operation) {
+
         switch (operation.toString()) {
             case "EQUALS":
                 resp.then().body(key, equalTo(val));
@@ -145,11 +160,23 @@ public class ApiManager<ValidatorOperation> extends ApiCommonVariables {
         CurlHandler handler = new CurlHandler() {
             @Override
             public void handle(String curl, Options options) {
+
                 curlLogs.add(curl);
             }
         };
         List<CurlHandler> handlers = Collections.singletonList(handler);
 
         return CurlRestAssuredConfigFactory.createConfig(handlers);
+    }
+    public void saveResponse() {
+        requestSpecificationMap.put(testApiName, resp);
+        System.out.println(requestSpecificationMap.size()+ " requestSpecification Map size and Response saved as "+testApiName);
+    }
+
+    public Object getSavedResponseData(String jsonPath, String saveRespName) {
+
+        Object responseVal = requestSpecificationMap.get(saveRespName).jsonPath().get(jsonPath);
+        System.out.println(" Response Value:: "+responseVal.toString());
+        return responseVal;
     }
 }

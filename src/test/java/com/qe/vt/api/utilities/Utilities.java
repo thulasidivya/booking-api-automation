@@ -1,4 +1,4 @@
-package com.qe.vt.atz.atz.utilities;
+package com.qe.vt.api.utilities;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

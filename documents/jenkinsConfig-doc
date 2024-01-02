@@ -48,4 +48,5 @@ Add the "Repository HTTPS URL."
 Select the credentials (github-token) you configured.
 Save the job configuration.
 
-Now, Jenkins is configured to use the GitHub Personal Access Token for interacting with your GitHub repositories. The Multibranch Pipeline job will automatically discover branches and trigger builds based on changes in the GitHub repositories.
+Now, Jenkins is configured to use the GitHub Personal Access Token for interacting with your GitHub repositories.
+ The Multibranch Pipeline job will automatically discover branches and trigger builds based on changes in the GitHub repositories.

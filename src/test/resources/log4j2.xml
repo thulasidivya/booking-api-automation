@@ -29,7 +29,7 @@
 
 	</Appenders>
 	<Loggers>
-		<Logger name="com.qe.vt.atz.atz" level="DEBUG" additivity="false">
+		<Logger name="com.qe.vt.api" level="DEBUG" additivity="false">
 			<AppenderRef ref="console" />
 			<AppenderRef ref="rollingFile" />
 		</Logger>

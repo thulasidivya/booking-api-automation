@@ -1,6 +1,8 @@
 package com.qe.vt.api.stepdeff;
 
-import com.qe.vt.api.framework.ApiManager;
+import api.ValidatorOperation;
+import com.qe.vt.api.framework.ResourceUtilities;
+import com.qe.vt.api.framework.RestApiManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,7 +10,7 @@ import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ApiStepDefinition extends ApiManager {
+public class ApiStepDefinition extends RestApiManager {
     private static final Logger logger = LogManager.getLogger(ApiStepDefinition.class);
 
     @Given("I set the request baseuri for {string}")
@@ -22,22 +24,28 @@ public class ApiStepDefinition extends ApiManager {
         setDefaultRequestHeaders();
         setDefaultRequestBody(testApiName);
     }
-    @Then("I Verify the response status code as {int} and status text as {string}")
-    public void iVerifyTheResponseStatusCodeAsAndStatusTextAs(int statusCode, String statusText) {
-        assertStatusCode(statusCode);
+    @And("I set the request body field {string} with the value of {}")
+    public void iSetTheRequestBodyFieldWithTheValueOf(String jsonPath, String updateValue) {
+        logger.atDebug().log("I set the request body field with the value of path and value.................");
+        requestBody = ResourceUtilities.updateRequestFieldsValues(requestBody,jsonPath, updateValue);
     }
     @When("I call the {string} method")
     public void iCallTheMethod(String httpMethod) {
-                executeHttpMethod(httpMethod);
-    }
-    @And("I set the request body field {string} with the value of {}")
-    public void iSetTheRequestBodyFieldWithTheValueOf(String arg0, String arg1) {
 
-
+        executeHttpMethod(httpMethod);
     }
 
-    @And("I verify the response body value of {string} should accept only alphabets and should equal to {}")
-    public void iVerifyTheResponseBodyValueOfShouldAcceptOnlyAlphabetsAndShouldEqualTo(String arg0, String arg1) {
+    @And("I set the request  field headers {string} with the value of {string}")
+    public void iSetTheRequestFieldHeadersWithTheValueOf(String arg0, String arg1, String arg2) {
 
+    }
+    @Then("I verify the response status code as {int} and status text as {string}")
+    public void iVerifyTheResponseStatusCodeAsAndStatusTextAs(int statusCode, String statusText) {
+        assertStatusCode(statusCode);
+    }
+
+    @Then("I verify the response body value of {string} should equal {}")
+    public void iVerifyTheResponseBodyValueOfShouldEqual(String jsonPath, String exceptedValue) {
+        assertIt(jsonPath,exceptedValue, ValidatorOperation.EQUALS);
     }
 }
